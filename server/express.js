@@ -45,12 +45,6 @@ module.exports.init = function() {
     });
   });
   */
-  app.get('/api', (req,res) => {
-    console.log("enter");
-  });
-  app.get('/apii', (req,res) => {
-    res.send("enter");
-  });
   //Flowers Router for requests to api
   app.get('/api/sightings', (req,res) => {
     db.all('SELECT * FROM sightings', (err, rows) => {
