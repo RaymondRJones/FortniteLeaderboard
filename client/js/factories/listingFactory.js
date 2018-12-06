@@ -3,18 +3,20 @@ angular.module('listings', []).factory('Listings', function($http) {
     getFlowers: function() {
       return $http.get('/api/flowers');
     },
-    getSightings: function() {
-      return $http.get('/api/sightings/');
+    getSightings: function(flowerName) {
+      return $http.get('/api/sightings/' + flowerName);
     },
-
-	create: function(listing) {
-	  return $http.post('http://localhost:8080/api/listings', listing);
+    insertSighting: function(sighting) {
+      return $http.post('/api/sightings', sighting);
     },
+  	updateFlower: function(flower) {
+  	  return $http.post('/api/flower', flower);
+      },
 
-  delete: function(id) {
-     /**TODO
-        return result of HTTP delete method
-       */
+     delete: function(id) {
+       /**TODO
+          return result of HTTP delete method
+         */
 
        return $http.post('http://localhost:8080/api/listings', id );
 

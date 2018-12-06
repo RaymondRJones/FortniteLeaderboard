@@ -46,10 +46,32 @@ module.exports.init = function() {
   });
   */
   //Flowers Router for requests to api
-  app.get('/api/sightings', (req,res) => {
-    db.all('SELECT * FROM sightings', (err, rows) => {
+  app.get('/api/sightings/:flowerName', (req,res) => {
+
+      db.all('SELECT * FROM sightings WHERE name = "' + req.params.flowerName + '" LIMIT 10;', (err, rows) => {
       res.send(rows);
     });
+  });
+  app.post('/api/sightings', (req,res) => {
+    /*
+      db.all('INSERT INTO sightings VALUES ()', (err, rows) => {
+      res.send(rows);
+    });
+    */
+  });
+  app.post('/api/flowers', (req,res) => {
+    /*
+      var user = req.user;
+      user.username = req.body.username;
+      user.password = req.body.password;
+      user.firstname = req.body.firstname;
+      user.lastname = req.body.lastname;
+      user.role = req.body.role;
+      user.class = req.body.class;
+      db.all('Update flowers SET', (err, rows) => {
+      res.send(rows);
+    });
+    */
   });
   app.get('/api/flowers', (req,res) => {
     db.all('SELECT * FROM flowers', (err, rows) => {
