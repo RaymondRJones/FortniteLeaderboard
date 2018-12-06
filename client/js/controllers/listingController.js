@@ -1,24 +1,32 @@
 angular.module('listings').controller('ListingsController', ['$scope', 'Listings',
   function($scope, Listings) {
-    /* Get all the listings, then bind it to the scope */
-    Listings.getAll().then(function(response) {
+    /* Get all the flowers, then bind it to the scope */
+    Listings.getFlowers().then(function(response) {
       $scope.listings = response.data;
+          console.log($scope.listings);
     }, function(error) {
       console.log('Unable to retrieve listings:', error);
     });
-    $scope.test = "test"
+
+    //for a selected flower, returns it's sightings
+    Listings.getSightings().then(function(response) {
+      $scope.sightings = response.data;
+    }, function(error) {
+      console.log('Unable to retrieve listings:', error);
+    });
     $scope.detailedInfo = undefined;
 
-    $scope.addListing = function() {
-      var obj = {
-        "code": $scope.newListing.code,
-        "name": $scope.newListing.name,
-        "address": $scope.newListing.adress
+    $scope.addSighting = function(name, person, location, sighted) {
+      var newSight = {
+        "name": name,
+        "person": person,
+        "location": location,
+        "sighted": sighted
       }
 
-      $scope.listings.push(obj);
+      $scope.sightings.push(newSight);
 
-      Listings.create(obj);
+      Listings.addSighting(newSight);
 
 
 	  /**TODO

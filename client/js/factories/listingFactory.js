@@ -1,7 +1,10 @@
 angular.module('listings', []).factory('Listings', function($http) {
   var methods = {
-    getAll: function() {
-      return $http.get('/api/listings');
+    getFlowers: function() {
+      return $http.get('/api/flowers');
+    },
+    getSightings: function() {
+      return $http.get('/api/sightings/');
     },
 
 	create: function(listing) {
